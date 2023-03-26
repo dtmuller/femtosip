@@ -117,7 +117,8 @@ class DigestTokenizer:
 
 def parse_digest(data):
     ST_INITIAL, ST_KEY, ST_EQ, ST_VALUE, ST_COMMA = 0, 1, 2, 3, 4
-    tokens = DigestTokenizer.tokenize(data)
+    tokenizer = DigestTokenizer()
+    tokens = tokenizer.feed(data)
     status, fields, key = ST_INITIAL, {}, None
     for token in tokens:
         if status == ST_INITIAL:
